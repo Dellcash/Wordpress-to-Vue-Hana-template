@@ -13,9 +13,9 @@
   <h3 align="center">KIAN wordpress-to-vue</h3>
 
   <p align="center">
-   این قالب وردپرسی 'هانا' بود که بوسیله 
+   این قالب فروشگاهی وردپرس 'هانا' بود که بوسیله 
     <a href="https://uno.antfu.me/">ٔUnocss</a>
-   کدنویسی مجددش کردم به ویوو‌جی‌اس.
+    درحال کدنویسی مجددش هستم به ویوو‌جی‌اس.
     <br />
     <a href="#">Mine Demo</a>
     ·

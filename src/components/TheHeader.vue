@@ -1,9 +1,58 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import Shopping from "./Icons/Shopping.vue";
+
+const navs = ref([
+	{
+		title: "خانه",
+		link: "/",
+	},
+	{
+		title: "فروشگاه",
+		link: "#",
+	},
+	{
+		title: "وبلاگ",
+		link: "#",
+	},
+]);
+</script>
 
 <template>
 	<header>
-		<h1>هانا</h1>
+		<h3>محصولات هانا</h3>
+		<nav md:order-1>
+			<ul flex>
+				<li v-for="nav in navs" :key="nav">
+					<router-link :to="nav.link">{{ nav.title }}</router-link>
+				</li>
+			</ul>
+		</nav>
+		<div class="icon">
+			<Shopping />
+			<div class="badge">1</div>
+		</div>
 	</header>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+header {
+	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:px-3rem";
+
+	h3 {
+		--at-apply: "text-16px tracking-tighter sm:text-24px md:order-2";
+	}
+
+	li {
+		--at-apply: "text-10px odd:mx-5 sm:text-14px";
+	}
+
+	.icon {
+		--at-apply: "relative md:order-3";
+
+		.badge {
+			--at-apply: "absolute text-center bg-black rounded-full bottom-3 w-15px h-15px -right-2.5 color-white text-10px";
+		}
+	}
+}
+</style>
