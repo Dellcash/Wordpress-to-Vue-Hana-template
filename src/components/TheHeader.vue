@@ -37,14 +37,14 @@ const navs = ref([
 
 <style lang="scss" scoped>
 header {
-	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:px-3rem";
+	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:px-5rem xl:py-10";
 
 	h3 {
-		--at-apply: "text-16px tracking-tighter sm:text-24px md:order-2";
+		--at-apply: "text-16px tracking-tighter sm:text-24px md:order-2 xl:ml-12rem";
 	}
 
 	li {
-		--at-apply: "text-10px odd:mx-5 sm:text-14px";
+		--at-apply: "text-10px odd:mx-5 sm:text-14px xl:odd:mx-10";
 	}
 
 	.icon {
