@@ -1,0 +1,25 @@
+@font-face {
+	font-family: "IRANSans";
+	src: url("../fonts/FontsFree-Net-ir_sans.ttf");
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "IRANSans";
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
