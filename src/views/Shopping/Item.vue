@@ -1,7 +1,5 @@
 <script setup></script>
 
-<template>
-	<main>فروشگاه</main>
-</template>
+<template>each page id {{ $route.params.id }}</template>
 
 <style lang="scss" scoped></style>

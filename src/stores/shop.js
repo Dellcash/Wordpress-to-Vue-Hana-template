@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
+import { useShop } from './data'
 
-export const useCounterStore = defineStore({
-  id: 'counter',
+export const useShopStore = defineStore({
+  id: 'Shop',
   state: () => ({
-    counter: 0
+    items: useShop.items
   }),
   getters: {
     doubleCount: (state) => state.counter * 2
