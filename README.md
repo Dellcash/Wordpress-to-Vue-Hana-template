@@ -10,7 +10,7 @@
     <img src="./src/assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">KIAN wordpress-to-vue</h3>
+  <h3 align="center">HANA wordpress-to-vue</h3>
 
   <p align="center">
    این قالب فروشگاهی وردپرس 'هانا' بود که بوسیله 
