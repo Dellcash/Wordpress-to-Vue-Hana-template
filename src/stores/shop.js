@@ -7,11 +7,12 @@ export const useShopStore = defineStore({
     items: useShop.items
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2
+    getItem: (state) => {
+      return (id) => {
+        return state.items.filter(item => item.id == id)[0]
+      }
+    }
   },
   actions: {
-    increment() {
-      this.counter++
-    }
   }
 })

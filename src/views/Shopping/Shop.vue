@@ -1,5 +1,5 @@
 <script setup>
-import { useShopStore } from "../../stores/shop";
+import { useShopStore } from "@/stores/shop";
 
 const shopStore = useShopStore();
 </script>
@@ -14,9 +14,7 @@ const shopStore = useShopStore();
 
 				<div>
 					<router-link :to="`/shop/${item.id}`">
-						<h4>
-							{{ item.title }}
-						</h4>
+						<h4>{{ item.title }}</h4>
 					</router-link>
 					<h6>{{ item.price }}</h6>
 				</div>
@@ -34,7 +32,7 @@ main {
 
 		div {
 			img {
-				--at-apply: "w-full h-8rem object-cover sm:h-12rem md:h-20rem xl:h-22rem";
+				--at-apply: "w-full h-8rem object-cover shadow-lg duration-250 hover:scale-105 sm:h-12rem md:h-20rem xl:h-22rem";
 			}
 
 			div {

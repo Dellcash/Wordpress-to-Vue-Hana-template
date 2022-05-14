@@ -24,3 +24,7 @@ a {
 li {
 	list-style: none;
 }
+
+p {
+	color: rgb(31, 41, 55);
+}

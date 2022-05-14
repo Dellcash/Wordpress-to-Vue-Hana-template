@@ -1,5 +1,133 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+import { useShopStore } from "@/stores/shop";
+import { onMounted, ref } from "vue";
+import Comment from "../../components/Icons/Comment.vue";
 
-<template>each page id {{ $route.params.id }}</template>
+const shopStore = useShopStore();
+const route = useRoute();
+const item = shopStore.getItem(route.params.id);
 
-<style lang="scss" scoped></style>
+const description = ref(true);
+const comment = ref(false);
+const descRef = ref(null);
+const commentRef = ref(null);
+
+const descBtn = () => {
+	description.value = true;
+	comment.value = false;
+};
+const commentBtn = () => {
+	comment.value = true;
+	description.value = false;
+};
+
+// focusing on description button when page loaded
+onMounted(() => {
+	descRef.value.focus();
+});
+</script>
+
+<template>
+	<main>
+		<!-- FIRST -->
+		<section class="first">
+			<img :src="item.img" alt="" />
+
+			<div>
+				<h4>{{ item.title }}</h4>
+				<h6>{{ item.price }}</h6>
+				<p>{{ item.description }} {{ item.description }}</p>
+				<button>افزودن به سبد خرید</button>
+			</div>
+		</section>
+
+		<!-- SECOND -->
+		<section class="second">
+			<div>
+				<button ref="descRef" @click="descBtn">پشتیبانی محصول</button>
+				<button ref="commentRef" @click="commentBtn">نظرات</button>
+
+				<!-- CONDITIONS -->
+				<p v-if="description">
+					<!-- just simulate some content -->
+					{{ item.description }}{{ item.description }} <br />
+					<br />
+					{{ item.description }}
+				</p>
+
+				<!-- COMMENT -->
+				<div v-if="comment">
+					<Comment />
+					<h6>هنوز نظری ثبت نشده</h6>
+					<h5 xl:text-xl>اولین نفری باشید که نظر می‌دهید</h5>
+					<button>ثبت نظر</button>
+				</div>
+			</div>
+		</section>
+	</main>
+</template>
+
+<style lang="scss" scoped>
+main {
+	--at-apply: "mt-4 md:mt-8";
+
+	.first {
+		--at-apply: "flex flex-col justify-center sm:items-center xl:flex-row xl:grid xl:grid-cols-2 xl:pr-10";
+
+		img {
+			margin: 0 auto;
+			--at-apply: w-50% h-12rem object-cover shadow-sm
+      sm:w-40% sm:h-20rem md:w-55% md:h-30rem md:mb-5 lg:w-45% lg:h-35rem lg:mb-10 xl:w-50% xl:h-24rem;
+		}
+
+		div {
+			--at-apply: "text-right px-5 mb-2 mt-5 md:my-3 lg:my-4 sm:w-400px md:w-full lg:w-700px xl:w-full xl:pl-38";
+
+			h4 {
+				--at-apply: "text-14px mb-2 duration-250 hover:opacity-70 sm:text-14px md:text-20px";
+			}
+
+			h6 {
+				--at-apply: "inline-block p-2 text-12px sm:text-14px font5 bg-gray-100 mb-2";
+			}
+
+			p {
+				--at-apply: "text-10px lg:text-12px";
+			}
+
+			button {
+				--at-apply: "w-70% bg-[#62af65] text-white text-9px mt-5 py-2 duration-250 hover:opacity-80 md:w-40% md:py-3 xl:text-12px";
+			}
+		}
+	}
+
+  .second {
+    --at-apply: "p-5 xl:pt-0";
+
+    div {
+      --at-apply: "sm:m-auto sm:w-60% md:w-full lg:w-67% xl:w-full xl:px-30";
+
+      button {
+        --at-apply: "text-12px tracking-tighter p-2 border-gray-200 xl:text-16px focus:border-t focus:border-r focus:border-l focus:outline-none active:outline-none";
+      }
+
+      p {
+        --at-apply: "text-10px py-5 px-3 border border-gray-200 lg:text-12px";
+      }
+
+      div {
+        --at-apply: "border border-gray-200 m-auto text-center py-7 sm:w-full xl:py-10";
+
+        h6 {
+          --at-apply: "font-thin xl:text-1rem";
+        }
+
+        button {
+          --at-apply: "bg-[#2F88FF] text-gray-200 text-10px px-6 rounded-lg py-1.5 mt-5 xl:px-8 xl:text-14px"
+        }
+      }
+    }
+  }
+}
+</style>
