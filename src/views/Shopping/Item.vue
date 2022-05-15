@@ -24,6 +24,11 @@ const commentBtn = () => {
 
 // MODAL
 const modal = ref(false);
+// rating star function
+const rating = ref(0);
+const ratingStar = (star) => {
+	rating.value = star;
+};
 </script>
 
 <template>
@@ -68,9 +73,40 @@ const modal = ref(false);
 			</div>
 
 			<!-- MODAL -->
-			<div v-if="!modal" class="modal">
-				<div class="back-g"></div>
-				<div class="content">نظر</div>
+			<div v-if="modal" class="modal">
+				<div class="back-g" @click="modal = false"></div>
+				<div class="content">
+					<!-- HEAD -->
+					<div class="head">
+						<p>نظر شما راجب این محصول چیست؟</p>
+						<button @click="modal = false"><span>&#9747;</span></button>
+					</div>
+
+					<!-- MAIN -->
+					<div class="main">
+						<img :src="item.img" alt="" />
+						<div>
+							<h6 mb-1>{{ item.title }}</h6>
+							<p>چه امتیازی به این محصول می‌دهید؟</p>
+
+							<!-- RATING -->
+							<div class="stars">
+								<div
+									class="star"
+									v-for="(star, index) in 5"
+									:key="index"
+									@click="ratingStar(index + 1)"
+								>
+									<span v-if="rating >= index + 1">&#9733;</span>
+									<span v-else>&#9734;</span>
+								</div>
+							</div>
+
+							<!-- FORM -->
+							<form @submit.prevent=""></form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>
@@ -142,12 +178,47 @@ main {
     }
 
 		.modal {
+			--at-apply: "";
+
 			.back-g {
 				--at-apply: "fixed block top-0 left-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0.5)] z-9999";
 			}
 
 			.content {
-				--at-apply: "bg-white fixed top-[50%] left-[50%] shadow z-9999";
+				transform: translate(-50%, -50%);
+				--at-apply: "w-85% bg-white fixed top-[50%] left-[50%] shadow z-9999 rounded-sm";
+
+				.head {
+					--at-apply: "flex items-center justify-between p-2";
+
+					p {
+						--at-apply: "text-10px";
+					}
+				}
+
+				.main {
+					--at-apply: "flex items-start p-5";
+
+					img {
+						--at-apply: "w-20 h-25 object-cover";
+					}
+
+					div {
+						--at-apply: "pr-3";
+
+						p {
+							--at-apply: "text-9px text-gray tracking-tighter";
+						}
+
+						.stars {
+							--at-apply: "flex pr-0";
+
+							.star {
+								--at-apply: "pr-0 cursor-pointer text-22px text-yellow-500 ";
+							}
+						}
+					}
+				}
 			}
 		}
   }
