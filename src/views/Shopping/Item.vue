@@ -1,17 +1,17 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { useShopStore } from "@/stores/shop";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import Comment from "../../components/Icons/Comment.vue";
 
+// GET DATA FROM ROUTE
 const shopStore = useShopStore();
 const route = useRoute();
 const item = shopStore.getItem(route.params.id);
 
+// BUTTONS
 const description = ref(true);
 const comment = ref(false);
-const descRef = ref(null);
-const commentRef = ref(null);
 
 const descBtn = () => {
 	description.value = true;
@@ -22,14 +22,12 @@ const commentBtn = () => {
 	description.value = false;
 };
 
-// focusing on description button when page loaded
-onMounted(() => {
-	descRef.value.focus();
-});
+// MODAL
+const modal = ref(false);
 </script>
 
 <template>
-	<main>
+	<main relative>
 		<!-- FIRST -->
 		<section class="first">
 			<img :src="item.img" alt="" />
@@ -44,9 +42,13 @@ onMounted(() => {
 
 		<!-- SECOND -->
 		<section class="second">
-			<div>
-				<button ref="descRef" @click="descBtn">پشتیبانی محصول</button>
-				<button ref="commentRef" @click="commentBtn">نظرات</button>
+			<div class="top">
+				<button @click="descBtn" :class="{ borderBtn: description }">
+					پشتیبانی محصول
+				</button>
+				<button @click="commentBtn" :class="{ borderBtn: comment }">
+					نظرات
+				</button>
 
 				<!-- CONDITIONS -->
 				<p v-if="description">
@@ -60,9 +62,15 @@ onMounted(() => {
 				<div v-if="comment">
 					<Comment />
 					<h6>هنوز نظری ثبت نشده</h6>
-					<h5 xl:text-xl>اولین نفری باشید که نظر می‌دهید</h5>
-					<button>ثبت نظر</button>
+					<h5 xl:text-xl>اولین نفری باشید که نظر می‌دهید.</h5>
+					<button @click="modal = true">ثبت نظر</button>
 				</div>
+			</div>
+
+			<!-- MODAL -->
+			<div v-if="!modal" class="modal">
+				<div class="back-g"></div>
+				<div class="content">نظر</div>
 			</div>
 		</section>
 	</main>
@@ -103,14 +111,18 @@ main {
 	}
 
   .second {
-    --at-apply: "p-5 xl:pt-0";
+    --at-apply: "p-5 pt-1 xl:pt-0";
 
-    div {
+    .top {
       --at-apply: "sm:m-auto sm:w-60% md:w-full lg:w-67% xl:w-full xl:px-30";
 
       button {
-        --at-apply: "text-12px tracking-tighter p-2 border-gray-200 xl:text-16px focus:border-t focus:border-r focus:border-l focus:outline-none active:outline-none";
+        --at-apply: "text-12px tracking-tighter py-1.5 px-3 border-gray-200 xl:text-16px active:outline-none";
       }
+
+			.borderBtn {
+				--at-apply: "border-t border-r border-l outline-none";
+			}
 
       p {
         --at-apply: "text-10px py-5 px-3 border border-gray-200 lg:text-12px";
@@ -124,10 +136,20 @@ main {
         }
 
         button {
-          --at-apply: "bg-[#2F88FF] text-gray-200 text-10px px-6 rounded-lg py-1.5 mt-5 xl:px-8 xl:text-14px"
+          --at-apply: "bg-[#2F88FF] text-gray-200 text-10px px-6 rounded-lg py-1.5 mt-5 focus:border-none xl:px-8 xl:text-14px"
         }
       }
     }
+
+		.modal {
+			.back-g {
+				--at-apply: "fixed block top-0 left-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0.5)] z-9999";
+			}
+
+			.content {
+				--at-apply: "bg-white fixed top-[50%] left-[50%] shadow z-9999";
+			}
+		}
   }
 }
 </style>
