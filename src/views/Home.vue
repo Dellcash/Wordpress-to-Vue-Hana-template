@@ -53,9 +53,9 @@ import { useHome } from "../stores/data";
 		</section>
 
 		<!-- SIXTH -->
-		<section class="sixth" text-center mb-8 xl:my-40>
-			<h1 mb-5 lg:text-3rem font-bold>« ترشی جدید. »</h1>
-			<p text-10px font-thin lg:text-18px>_ مجله زندگی سالم</p>
+		<section class="sixth">
+			<h1>« ترشی جدید. »</h1>
+			<p>_ مجله زندگی سالم</p>
 		</section>
 
 		<!-- SEVENTH -->
@@ -104,7 +104,7 @@ main {
 			}
 
 			p {
-				--at-apply: "text-10px font-thin sm:text-14px";
+				--at-apply: "text-10px font-thin sm:text-14px text-white";
 			}
 		}
   }
@@ -146,8 +146,20 @@ main {
 			}
 
 			p {
-				--at-apply: "text-10px font-thin sm:text-14px";
+				--at-apply: "text-10px font-thin sm:text-14px text-white";
 			}
+		}
+	}
+
+	.sixth {
+		--at-apply: "text-center mb-8 xl:my-40";
+
+		h1 {
+			--at-apply: "mb-5 lg:text-3rem font-bold";
+		}
+
+		p {
+			--at-apply: "text-10px font-thin lg:text-18px";
 		}
 	}
 
@@ -164,7 +176,7 @@ main {
 			}
 
 			p {
-				--at-apply: "text-10px font-thin sm:text-14px";
+				--at-apply: "text-10px font-thin sm:text-14px text-white";
 			}
 		}
   }

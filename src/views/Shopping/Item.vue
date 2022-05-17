@@ -1,8 +1,9 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { useShopStore } from "@/stores/shop";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import Comment from "../../components/Icons/Comment.vue";
+import Loading from "../../components/Icons/Loading.vue";
 
 // GET DATA FROM ROUTE
 const shopStore = useShopStore();
@@ -28,6 +29,54 @@ const modal = ref(false);
 const rating = ref(0);
 const ratingStar = (star) => {
 	rating.value = star;
+};
+// from
+const form = reactive({
+	name: "",
+	nameErr: "",
+	title: "",
+	titleErr: "",
+	comment: "",
+	commentErr: "",
+});
+const loading = ref(false);
+const success = ref(false);
+const validation = () => {
+	if (form.name === "") {
+		form.nameErr = "لطفا فیلد مورده نظر را پر کیند!";
+	} else {
+		form.nameErr = "";
+	}
+	if (form.title === "") {
+		form.titleErr = "لطفا فیلد مورده نظر را پر کیند!";
+	} else {
+		form.titleErr = "";
+	}
+	if (form.comment === "") {
+		form.commentErr = "لطفا فیلد مورده نظر را پر کیند!";
+	} else {
+		form.commentErr = "";
+	}
+
+	if (form.name !== "" && form.title !== "" && form.comment !== "") {
+		setTimeout(() => {
+			form.name = "";
+			form.title = "";
+			form.comment = "";
+			modal.value = false;
+		}, 2000);
+		loading.value = true;
+	}
+
+	// SIMULATE API REQUEST
+	setTimeout(() => {
+		loading.value = false;
+		success.value = true;
+
+		setTimeout(() => {
+			success.value = false;
+		}, 2000);
+	}, 2000);
 };
 </script>
 
@@ -101,12 +150,66 @@ const ratingStar = (star) => {
 									<span v-else>&#9734;</span>
 								</div>
 							</div>
+						</div>
+					</div>
 
-							<!-- FORM -->
-							<form @submit.prevent=""></form>
+					<!-- BOTTOM -->
+					<form @submit.prevent="validation">
+						<!-- NAME -->
+						<div>
+							<input
+								v-model="form.name"
+								:class="form.nameErr ? '!border-red' : ''"
+								type="text"
+								placeholder="نام شما"
+							/>
+							<p text-red text-8px>{{ form.nameErr }}</p>
+						</div>
+
+						<!-- TITLE -->
+						<div>
+							<input
+								v-model="form.title"
+								:class="form.titleErr ? '!border-red' : ''"
+								type="text"
+								placeholder="عنوان نظر شما"
+							/>
+							<p text-red text-8px>{{ form.titleErr }}</p>
+						</div>
+
+						<!-- CONTEN -->
+						<div>
+							<textarea
+								v-model="form.comment"
+								:class="form.commentErr ? '!border-red' : ''"
+								rows="5"
+								placeholder="متن نظر شما"
+							></textarea>
+							<p text-red text-8px>{{ form.commentErr }}</p>
+						</div>
+
+						<div class="btns">
+							<button>ذخیره</button>
+							<button @click="modal = false">انصراف</button>
+						</div>
+					</form>
+
+					<!-- LOADING -->
+					<div v-if="loading" class="back-g">
+						<div flex justify-center>
+							<Loading animate-spin h-85vh />
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<!-- SUCCESS -->
+			<div v-if="success" class="sucess">
+				<button @click="success = false" mb-2>
+					<span text-10px text-gray-100>&#9747;</span>
+				</button>
+				<p>پیام شما بعد از تایید نمایش داده میشود!</p>
+				<span class="tick">&#10003;</span>
 			</div>
 		</section>
 	</main>
@@ -219,6 +322,42 @@ main {
 						}
 					}
 				}
+
+				form {
+					--at-apply: "p-3 space-y-3";
+
+					input {
+						--at-apply: "w-full text-10px p-1.5 border border-gray-200 outline-none";
+					}
+
+					textarea {
+						--at-apply: "w-full text-10px p-1.5 border border-gray-200 outline-none -mb-9px";
+					}
+
+					.btns {
+						--at-apply: "flex items-center justify-between pt-7";
+
+						button:first-child {
+							--at-apply: "text-10px px-7 py-1.7 bg-gray-400 text-white rounded-full duration-250 hover:opacity-80";
+						}
+
+						button:last-child {
+							--at-apply: "border-b border-gray-500 text-gray-500 text-10px px-3 py-1.7"
+						}
+					}
+				}
+			}
+		}
+
+		.sucess {
+			--at-apply: "fixed flex items-center top-10 right-5 bg-[#62af65] p-2";
+
+			p {
+				--at-apply: "text-10px ml-3 mr-1 text-white";
+			}
+
+			.tick {
+				--at-apply: "text-white font-900";
 			}
 		}
   }

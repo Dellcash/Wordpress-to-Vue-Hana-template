@@ -22,7 +22,7 @@ footer {
 	--at-apply: "p-3 bg-gray-50 flex items-center justify-center sm:p-5 lg:p-8";
 
 	section {
-		--at-apply: "flex items-center justify-between text-gray-500 sm:w-400px md:w-640px xl:flex-col xl:justify-center";
+		--at-apply: "flex items-center justify-between text-gray-500 w-full sm:w-400px md:w-640px xl:flex-col xl:justify-center";
 
 		p {
 			--at-apply: "text-9px font-thin sm:text-12px xl:order-2";
