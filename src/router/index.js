@@ -7,20 +7,33 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'صفحه نخست'
+      }
     },
     {
       path: '/shop',
       name: 'Shop',
       component: () => import('../views/Shopping/Shop.vue'),
+      meta: {
+        title: 'محصولات'
+      }
     },
     {
       path: '/shop/:id',
       name: 'Item',
-      component: () => import('../views/Shopping/Item.vue')
+      component: () => import('../views/Shopping/Item.vue'),
+      meta: {
+        title: '. . .'
+      }
     }
-
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = `فروشگاه هانا | ${to.meta.title}`
+  next()
 })
 
 export default router

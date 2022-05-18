@@ -4,11 +4,18 @@ import { useShopStore } from "@/stores/shop";
 import { reactive, ref } from "vue";
 import Comment from "../../components/Icons/Comment.vue";
 import Loading from "../../components/Icons/Loading.vue";
+import { computed } from "@vue/reactivity";
 
 // GET DATA FROM ROUTE
 const shopStore = useShopStore();
 const route = useRoute();
 const item = shopStore.getItem(route.params.id);
+const price = computed(() => {
+	return shopStore.toFarsiNumber(shopStore.numberWithCommas(item.price));
+});
+
+// PAGE TITLE
+document.title = `فروشگاه هانا | ${item.title}`;
 
 // BUTTONS
 const description = ref(true);
@@ -24,8 +31,15 @@ const commentBtn = () => {
 };
 
 // CART
+const addLoading = ref(false);
 const addToCart = (item) => {
-	shopStore.addToCart(item);
+	addLoading.value = true;
+
+	// simulate api request
+	setTimeout(() => {
+		shopStore.addToCart(item);
+		addLoading.value = false;
+	}, 2000);
 };
 
 // MODAL
@@ -44,7 +58,7 @@ const form = reactive({
 	comment: "",
 	commentErr: "",
 });
-const loading = ref(false);
+const formLoading = ref(false);
 const success = ref(false);
 const validation = () => {
 	if (form.name === "") {
@@ -70,12 +84,12 @@ const validation = () => {
 			form.comment = "";
 			modal.value = false;
 		}, 2000);
-		loading.value = true;
+		formLoading.value = true;
 	}
 
-	// SIMULATE API REQUEST
+	// simulate api request
 	setTimeout(() => {
-		loading.value = false;
+		formLoading.value = false;
 		success.value = true;
 
 		setTimeout(() => {
@@ -93,9 +107,12 @@ const validation = () => {
 
 			<div>
 				<h4>{{ item.title }}</h4>
-				<h6>{{ item.price }}</h6>
+				<h6>{{ price }} تومان</h6>
 				<p>{{ item.description }} {{ item.description }}</p>
-				<button @click="addToCart(item)">افزودن به سبد خرید</button>
+				<button @click="addToCart(item)">
+					<span v-if="!addLoading">افزودن به سبد خرید</span>
+					<span v-else>. . .</span>
+				</button>
 			</div>
 		</section>
 
@@ -204,8 +221,8 @@ const validation = () => {
 						</div>
 					</form>
 
-					<!-- LOADING -->
-					<div v-if="loading" class="back-g">
+					<!-- formLoading -->
+					<div v-if="formLoading" class="back-g">
 						<div flex justify-center>
 							<Loading animate-spin h-85vh />
 						</div>

@@ -16,7 +16,12 @@ const shopStore = useShopStore();
 					<router-link :to="`/shop/${item.id}`">
 						<h4>{{ item.title }}</h4>
 					</router-link>
-					<h6>{{ item.price }}</h6>
+					<h6>
+						{{
+							shopStore.toFarsiNumber(shopStore.numberWithCommas(item.price))
+						}}
+						تومان
+					</h6>
 				</div>
 			</div>
 		</section>
