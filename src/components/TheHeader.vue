@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import Shopping from "./Icons/Shopping.vue";
+import { useShopStore } from "@/stores/shop";
+import SideCart from "./SideCart.vue";
 
 const navs = ref([
 	{
@@ -16,6 +18,10 @@ const navs = ref([
 		link: "#",
 	},
 ]);
+
+const shopStore = useShopStore();
+
+const showCart = ref(false);
 </script>
 
 <template>
@@ -28,9 +34,23 @@ const navs = ref([
 				</li>
 			</ul>
 		</nav>
-		<div class="icon">
+		<div @click="showCart = true" class="icon">
 			<Shopping />
-			<div class="badge">1</div>
+			<div class="badge">{{ shopStore.count }}</div>
+		</div>
+
+		<!-- SIDE CART -->
+		<div v-if="showCart" class="side-cart">
+			<div @click="showCart = false" class="back-g"></div>
+
+			<!-- CONTENT -->
+			<div class="cart">
+				<!-- HEAD -->
+				<div class="head">
+					<h4 font-thin text-gray-200>سبد خرید</h4>
+					<span @click="showCart = false">&#9747;</span>
+				</div>
+			</div>
 		</div>
 	</header>
 </template>
@@ -48,10 +68,28 @@ header {
 	}
 
 	.icon {
-		--at-apply: "relative md:order-3 xl:ml-8";
+		--at-apply: "relative cursor-pointer md:order-3 xl:ml-8";
 
 		.badge {
 			--at-apply: "absolute text-center bg-black rounded-full bottom-3 w-15px h-15px -right-2.5 color-white text-10px";
+		}
+	}
+
+	.side-cart {
+		.back-g {
+			--at-apply: "fixed block top-0 left-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0.5)] z-9999";
+		}
+
+		.cart {
+			--at-apply: "fixed top-0 right-0 w-75% z-9999";
+
+			.head {
+				--at-apply: "bg-black text-white py-4 flex items-center justify-end";
+
+				span {
+					--at-apply: "text-20px font-semibold pl-5 pr-12 cursor-pointer";
+				}
+			}
 		}
 	}
 }

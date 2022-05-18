@@ -23,6 +23,11 @@ const commentBtn = () => {
 	description.value = false;
 };
 
+// CART
+const addToCart = (item) => {
+	shopStore.addToCart(item);
+};
+
 // MODAL
 const modal = ref(false);
 // rating star function
@@ -90,7 +95,7 @@ const validation = () => {
 				<h4>{{ item.title }}</h4>
 				<h6>{{ item.price }}</h6>
 				<p>{{ item.description }} {{ item.description }}</p>
-				<button>افزودن به سبد خرید</button>
+				<button @click="addToCart(item)">افزودن به سبد خرید</button>
 			</div>
 		</section>
 
