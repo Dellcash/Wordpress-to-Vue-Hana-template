@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 import Unocss from 'unocss/vite'
-import { presetUno, presetAttributify, transformerDirectives } from 'unocss'
+import { presetUno, presetAttributify, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +14,8 @@ export default defineConfig({
       presetUno()
     ],
     transformers: [
-      transformerDirectives()
+      transformerDirectives(),
+      transformerVariantGroup()
     ]
   })],
   resolve: {

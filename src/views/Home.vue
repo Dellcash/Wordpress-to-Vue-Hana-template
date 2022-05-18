@@ -93,34 +93,33 @@ import { useHome } from "../stores/data";
 main {
   .first {
 		background-image: url("../assets/images/img_1.jpg");
-		--at-apply: "h-50vw bg-center bg-cover sm:h-40vw md:h-46vw lg:h-36vw xl:h-45vw xl:bg-fixed";
+		--at-apply: "h-50vw bg-center bg-cover sm:h-40vw md:h-46vw lg:h-36vw xl:( h-45vw bg-fixed )";
 
 		div {
-			--at-apply: text-white py-2rem px-1rem space-y-2
-			sm:py-3rem sm:px-6rem sm:space-y-6 md:px-1rem md:py-6rem lg:px-8rem xl:pt-14rem xl:px-6rem;
+			--at-apply: "text-white py-2rem px-1rem space-y-2 sm:( py-3rem px-6rem space-y-6 ) md:( px-1rem py-6rem ) lg:px-8rem xl:( pt-14rem px-6rem )";
 
 			h3 {
-				--at-apply: "leading-9 font-medium sm:text-2rem sm:leading-14";
+				--at-apply: "leading-9 font-medium sm:( text-2rem leading-14 )";
 			}
 
 			p {
-				--at-apply: "text-10px font-thin sm:text-14px text-white";
+				--at-apply: "text-10px text-white font-thin sm:text-14px";
 			}
 		}
   }
 
   .second {
-    --at-apply: 'flex flex-col p-3 sm:px-7rem md:items-center md:px-3rem md:py-4rem xl:py-10rem xl:px-5rem';
+    --at-apply: 'flex flex-col p-3 sm:px-7rem md:( items-center px-3rem py-4rem ) xl:( py-10rem px-5rem )';
 
     div {
-      --at-apply: 'md:flex md:flex-row md:items-center md:space-x-5 lg:space-x-10 lg:w-768px xl:w-full xl:justify-between';
+      --at-apply: 'md:( flex flex-row items-center space-x-5 ) lg:( space-x-10 w-768px ) xl:( w-full justify-between )';
 
       h1 {
-        --at-apply: 'mb-2 md:order-2 md:text-40px xl:w-10rem';
+        --at-apply: 'mb-2 md:( order-2 text-40px ) xl:w-10rem';
       }
 
       p {
-        --at-apply: 'text-10px text-gray-500 leading-4 md:order-1 md:text-14px md:leading-5 md:w-full xl:w-60%';
+        --at-apply: 'text-10px text-gray-500 leading-4 md:( order-1 text-14px leading-5 w-full ) xl:w-60%';
       }
     }
   }
@@ -135,7 +134,7 @@ main {
 
 	.fifth {
 		background-image: url("../assets/images/img_5.jpg");
-		--at-apply: "h-50vw bg-top bg-cover my-8 sm:h-40vw md:h-46vw lg:bg-center lg:h-36vw xl:h-45vw xl:bg-fixed";
+		--at-apply: "h-50vw bg-top bg-cover my-8 sm:h-40vw md:h-46vw lg:( bg-center h-36vw ) xl:( h-45vw bg-fixed )";
 
 		div {
 			--at-apply: text-white text-left py-2rem px-1rem space-y-2

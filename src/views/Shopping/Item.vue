@@ -133,14 +133,16 @@ const validation = () => {
 					<!-- HEAD -->
 					<div class="head">
 						<p>نظر شما راجب این محصول چیست؟</p>
-						<button @click="modal = false"><span>&#9747;</span></button>
+						<button @click="modal = false">
+							<span sm:text-20px>&#9747;</span>
+						</button>
 					</div>
 
 					<!-- MAIN -->
 					<div class="main">
 						<img :src="item.img" alt="" />
 						<div>
-							<h6 mb-1>{{ item.title }}</h6>
+							<h6 mb-1 sm:text-lg>{{ item.title }}</h6>
 							<p>چه امتیازی به این محصول می‌دهید؟</p>
 
 							<!-- RATING -->
@@ -165,10 +167,11 @@ const validation = () => {
 							<input
 								v-model="form.name"
 								:class="form.nameErr ? '!border-red' : ''"
+								class="input"
 								type="text"
 								placeholder="نام شما"
 							/>
-							<p text-red text-8px>{{ form.nameErr }}</p>
+							<p>{{ form.nameErr }}</p>
 						</div>
 
 						<!-- TITLE -->
@@ -176,10 +179,11 @@ const validation = () => {
 							<input
 								v-model="form.title"
 								:class="form.titleErr ? '!border-red' : ''"
+								class="input"
 								type="text"
 								placeholder="عنوان نظر شما"
 							/>
-							<p text-red text-8px>{{ form.titleErr }}</p>
+							<p>{{ form.titleErr }}</p>
 						</div>
 
 						<!-- CONTEN -->
@@ -187,10 +191,11 @@ const validation = () => {
 							<textarea
 								v-model="form.comment"
 								:class="form.commentErr ? '!border-red' : ''"
+								class="input -mb-9px"
 								rows="5"
 								placeholder="متن نظر شما"
 							></textarea>
-							<p text-red text-8px>{{ form.commentErr }}</p>
+							<p>{{ form.commentErr }}</p>
 						</div>
 
 						<div class="btns">
@@ -286,7 +291,7 @@ main {
     }
 
 		.modal {
-			--at-apply: "";
+			// overflow-y: auto;
 
 			.back-g {
 				--at-apply: "fixed block top-0 left-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0.5)] z-9999";
@@ -294,60 +299,60 @@ main {
 
 			.content {
 				transform: translate(-50%, -50%);
-				--at-apply: "w-85% bg-white fixed top-[50%] left-[50%] shadow z-9999 rounded-sm";
+				--at-apply: "w-85% bg-white fixed top-[50%] left-[50%] shadow z-9999 rounded-sm sm:( w-65% rounded-md mt-15 ) md:w-53% lg:( w-40% mt-0 ) xl:w-32%";
 
 				.head {
-					--at-apply: "flex items-center justify-between p-2";
+					--at-apply: "flex items-center justify-between p-2 sm:mb-2";
 
 					p {
-						--at-apply: "text-10px";
+						--at-apply: "text-10px sm:text-14px";
 					}
 				}
 
 				.main {
-					--at-apply: "flex items-start p-5";
+					--at-apply: "flex items-start p-3";
 
 					img {
-						--at-apply: "w-20 h-25 object-cover";
+						--at-apply: "w-20 h-25 object-cover border p-3 border-gray-200 sm:( w-25 h-30 )";
 					}
 
 					div {
 						--at-apply: "pr-3";
 
 						p {
-							--at-apply: "text-9px text-gray tracking-tighter";
+							--at-apply: "text-9px text-gray tracking-tighter sm:( text-13px py-2 )";
 						}
 
 						.stars {
 							--at-apply: "flex pr-0";
 
 							.star {
-								--at-apply: "pr-0 cursor-pointer text-22px text-yellow-500 ";
+								--at-apply: "pr-0 cursor-pointer text-22px text-yellow-500 sm:( text-26px pr-1 )";
 							}
 						}
 					}
 				}
 
 				form {
-					--at-apply: "p-3 space-y-3";
+					--at-apply: "p-3 space-y-3 sm:( space-y-5 mt-5 )";
 
-					input {
-						--at-apply: "w-full text-10px p-1.5 border border-gray-200 outline-none";
+					.input {
+						--at-apply: "w-full text-10px p-1.5 border border-gray-200 rounded-sm outline-none sm:( text-13px p-3 )";
 					}
 
-					textarea {
-						--at-apply: "w-full text-10px p-1.5 border border-gray-200 outline-none -mb-9px";
+					p {
+						--at-apply: "text-red text-8px sm:( text-10px mt-1 )";
 					}
 
 					.btns {
-						--at-apply: "flex items-center justify-between pt-7";
+						--at-apply: "flex items-center justify-between pt-7 sm:pb-5";
 
 						button:first-child {
-							--at-apply: "text-10px px-7 py-1.7 bg-gray-400 text-white rounded-full duration-250 hover:opacity-80";
+							--at-apply: "text-10px px-7 py-1.7 bg-gray-400 text-white rounded-full duration-250 hover:opacity-80 sm:( text-14px px-11.5 py-2.8 )";
 						}
 
 						button:last-child {
-							--at-apply: "border-b border-gray-500 text-gray-500 text-10px px-3 py-1.7"
+							--at-apply: "border-b border-gray-500 text-gray-500 text-10px px-3 py-1.7 sm:( text-14px px-4 py-2.8 )"
 						}
 					}
 				}

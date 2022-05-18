@@ -47,7 +47,7 @@ const showCart = ref(false);
 			<div class="cart">
 				<!-- HEAD -->
 				<div class="head">
-					<h4 font-thin text-gray-200>سبد خرید</h4>
+					<h4>سبد خرید</h4>
 					<span @click="showCart = false">&#9747;</span>
 				</div>
 			</div>
@@ -57,7 +57,7 @@ const showCart = ref(false);
 
 <style lang="scss" scoped>
 header {
-	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:px-5rem xl:py-10";
+	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:(px-5rem py-10)";
 
 	h3 {
 		--at-apply: "text-16px tracking-tighter sm:text-24px md:order-2 xl:ml-14rem";
@@ -85,6 +85,10 @@ header {
 
 			.head {
 				--at-apply: "bg-black text-white py-4 flex items-center justify-end";
+
+				h4 {
+					--at-apply: "font-thin text-gray-200";
+				}
 
 				span {
 					--at-apply: "text-20px font-semibold pl-5 pr-12 cursor-pointer";
