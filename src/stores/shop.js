@@ -21,7 +21,7 @@ export const useShopStore = defineStore({
     count(state) {
       return state.cart.length
     },
-    allItem(state) {
+    allItems(state) {
       return state.cart
     },
     totalAmount(state) {

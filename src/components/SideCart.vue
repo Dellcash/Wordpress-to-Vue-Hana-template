@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "@vue/reactivity";
 import { useShopStore } from "../stores/shop";
 
 const emit = defineEmits(["close"]);
@@ -7,6 +8,7 @@ const closeCart = () => {
 };
 
 const shopStore = useShopStore();
+const items = computed(() => shopStore.allItems);
 </script>
 
 <template>
@@ -22,7 +24,59 @@ const shopStore = useShopStore();
 			</div>
 
 			<!-- MAIN -->
-			<div class="main"></div>
+			<div class="main">
+				<div v-for="item in items" :key="item.id" flex items-center p-5>
+					<img :src="item.img" alt="" w-15 h-15 object-cover ml-3 />
+					<div w-full>
+						<!-- TOP -->
+						<div flex items-center justify-between>
+							<h6 text-10px font-thin>{{ item.title }}</h6>
+							<span
+								@click="shopStore.removeItem(item.id)"
+								class="
+									text-7px
+									border border-gray-200
+									rounded-full
+									px-1
+									text-#000
+									cursor-pointer
+								"
+								>&#10005;</span
+							>
+						</div>
+
+						<!-- MID -->
+						<div flex items-center my-2>
+							<h6 text-9px font-semibold>تعداد</h6>
+							<div mr-4>
+								<span
+									@click="shopStore.increment(item.id)"
+									bg-white
+									px-2
+									py-1
+									text-10px
+									>+</span
+								>
+								<span bg-white px-2 py-1 text-10px mx-1>{{
+									shopStore.toFarsiNumber(item.quantity)
+								}}</span>
+								<span bg-white px-2 py-1 text-10px>-</span>
+							</div>
+						</div>
+
+						<!-- BOTTOM -->
+						<h6 text-10px>
+							{{
+								shopStore.toFarsiNumber(shopStore.numberWithCommas(item.price))
+							}}
+							تومان
+						</h6>
+					</div>
+				</div>
+			</div>
+
+			<!-- FOOTER -->
+			<div class="footer"></div>
 		</div>
 	</div>
 </template>
@@ -49,6 +103,11 @@ const shopStore = useShopStore();
 		}
 
 		.main {
+			--at-apply: "h-75vh bg-gray-100 overflow-scroll";
+		}
+
+		.footer {
+			--at-apply: "p-9 bg-gray-200";
 		}
 	}
 }
