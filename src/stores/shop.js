@@ -53,7 +53,7 @@ export const useShopStore = defineStore({
       useLocalStorage(this.cart)
     },
     decrement(id) {
-      const item = this.cart.fine(p => p.id == id)
+      const item = this.cart.find(p => p.id == id)
       if (item.quantity > 1) {
         item.quantity--
       }
