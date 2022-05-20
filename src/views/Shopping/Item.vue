@@ -83,6 +83,7 @@ const validation = () => {
 			form.title = "";
 			form.comment = "";
 			modal.value = false;
+			success.value = true;
 		}, 2000);
 		formLoading.value = true;
 	}
@@ -90,7 +91,6 @@ const validation = () => {
 	// simulate api request
 	setTimeout(() => {
 		formLoading.value = false;
-		success.value = true;
 
 		setTimeout(() => {
 			success.value = false;
@@ -252,11 +252,11 @@ main {
 		img {
 			margin: 0 auto;
 			--at-apply: w-50% h-12rem object-cover shadow-sm
-      sm:w-40% sm:h-20rem md:w-55% md:h-30rem md:mb-5 lg:w-45% lg:h-35rem lg:mb-10 xl:w-50% xl:h-24rem;
+      sm:w-40% sm:h-20rem md:w-55% md:h-30rem md:mb-5 lg:w-45% lg:h-35rem lg:mb-10 xl:w-70% xl:h-28rem;
 		}
 
 		div {
-			--at-apply: "text-right px-5 mb-2 mt-5 md:my-3 lg:my-4 sm:w-400px md:w-full lg:w-700px xl:w-full xl:pl-38";
+			--at-apply: "text-right px-5 mb-2 mt-5 md:my-3 lg:my-4 sm:w-400px md:w-full lg:w-700px xl:w-full xl:pl-38 xl:mb-20";
 
 			h4 {
 				--at-apply: "text-14px mb-2 duration-250 hover:opacity-70 sm:text-14px md:text-20px";
@@ -280,7 +280,7 @@ main {
     --at-apply: "p-5 pt-1 xl:pt-0";
 
     .top {
-      --at-apply: "sm:m-auto sm:w-60% md:w-full lg:w-67% xl:w-full xl:px-30";
+      --at-apply: "sm:m-auto sm:w-60% md:w-full lg:w-67% xl:w-full xl:px-20";
 
       button {
         --at-apply: "text-12px tracking-tighter py-1.5 px-3 border-gray-200 xl:text-16px active:outline-none";

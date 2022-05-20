@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from "@vue/reactivity";
+import { onMounted } from "vue";
 import { useShopStore } from "../stores/shop";
+import Basket from "./Icons/Basket.vue";
 
 const emit = defineEmits(["close"]);
 const closeCart = () => {
@@ -12,7 +14,7 @@ const items = computed(() => shopStore.allItems);
 </script>
 
 <template>
-	<div class="side-cart">
+	<div class="side-cart" relative>
 		<div @click="closeCart" class="back-g"></div>
 
 		<!-- CONTENT -->
@@ -21,6 +23,11 @@ const items = computed(() => shopStore.allItems);
 			<div class="head">
 				<p>سبد خرید</p>
 				<span @click="closeCart">&#10005;</span>
+			</div>
+
+			<div v-if="shopStore.cart.length === 0" class="basket">
+				<Basket mb-1 />
+				<h4>سبد خالی است!</h4>
 			</div>
 
 			<!-- MAIN -->
@@ -98,6 +105,14 @@ const items = computed(() => shopStore.allItems);
 
 			span {
 				--at-apply: "text-20px font-semibold pl-5 pr-12 cursor-pointer sm:( text-28px pl-10 pr-18 )";
+			}
+		}
+
+		.basket {
+			--at-apply: "absolute bottom-70 mx-auto left-0 right-0 text-center lg:bottom-90";
+
+			h4 {
+				--at-apply: "font-thin tracking-tighter lg:text-20px";
 			}
 		}
 
