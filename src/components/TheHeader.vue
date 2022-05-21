@@ -1,8 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import Shopping from "./Icons/Shopping.vue";
 import { useShopStore } from "@/stores/shop";
 import SideCart from "./SideCart.vue";
+import { useRouter } from "vue-router";
 
 const navs = ref([
 	{
@@ -21,9 +22,14 @@ const navs = ref([
 
 const shopStore = useShopStore();
 
+// CLOSE SIDE CART WHEN ROUTER CHANGE
+const router = useRouter();
 const closeCart = () => {
-	shopStore.SideCart = false;
+	shopStore.sideCart = false;
 };
+onMounted(() => {
+	router.afterEach(closeCart);
+});
 </script>
 
 <template>
@@ -36,13 +42,13 @@ const closeCart = () => {
 				</li>
 			</ul>
 		</nav>
-		<div @click="shopStore.SideCart = true" class="icon">
+		<div @click="shopStore.sideCart = true" class="icon">
 			<Shopping />
 			<div class="badge">{{ shopStore.toFarsiNumber(shopStore.count) }}</div>
 		</div>
 	</header>
 
-	<SideCart v-if="shopStore.SideCart" @close="closeCart" />
+	<SideCart v-if="shopStore.sideCart" />
 </template>
 
 <style lang="scss" scoped>

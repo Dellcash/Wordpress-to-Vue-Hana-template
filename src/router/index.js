@@ -27,6 +27,13 @@ const router = createRouter({
       meta: {
         title: '. . .'
       }
+    },
+    {
+      path: '/shopping-card',
+      component: () => import('../views/Shopping/ShoppingCart.vue'),
+      meta: {
+        title: 'سبد خرید'
+      }
     }
   ]
 })

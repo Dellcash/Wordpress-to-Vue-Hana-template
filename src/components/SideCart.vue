@@ -1,13 +1,7 @@
 <script setup>
 import { computed } from "@vue/reactivity";
-import { onMounted } from "vue";
 import { useShopStore } from "../stores/shop";
 import Basket from "./Icons/Basket.vue";
-
-const emit = defineEmits(["close"]);
-const closeCart = () => {
-	emit("close");
-};
 
 const shopStore = useShopStore();
 const items = computed(() => shopStore.allItems);
@@ -15,14 +9,14 @@ const items = computed(() => shopStore.allItems);
 
 <template>
 	<div class="side-cart" relative>
-		<div @click="closeCart" class="back-g"></div>
+		<div @click="shopStore.sideCart = false" class="back-g"></div>
 
 		<!-- CONTENT -->
 		<div class="cart">
 			<!-- HEAD -->
 			<div class="head">
 				<p>سبد خرید</p>
-				<span @click="closeCart">&#10005;</span>
+				<span @click="shopStore.sideCart = flase">&#10005;</span>
 			</div>
 
 			<div v-if="shopStore.cart.length === 0" class="basket">
@@ -79,7 +73,9 @@ const items = computed(() => shopStore.allItems);
 
 				<!-- BUTTONS -->
 				<div border-t border-gray-300>
-					<button>مشاهده سبد خرید</button>
+					<button>
+						<router-link to="/shopping-card">مشاهده سبد خرید</router-link>
+					</button>
 					<button>تسویه حساب</button>
 				</div>
 			</div>

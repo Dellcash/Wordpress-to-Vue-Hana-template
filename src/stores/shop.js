@@ -43,6 +43,8 @@ export const useShopStore = defineStore({
       }
 
       useLocalStorage(this.cart)
+
+      this.sideCart = true
     },
     increment(id) {
       const item = this.cart.find(p => p.id == id)
