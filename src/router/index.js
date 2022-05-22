@@ -34,6 +34,13 @@ const router = createRouter({
       meta: {
         title: 'سبد خرید'
       }
+    },
+    {
+      path: '/info',
+      component: () => import('../views/Shopping/Info.vue'),
+      meta: {
+        title: 'اطلاعات شما'
+      }
     }
   ]
 })

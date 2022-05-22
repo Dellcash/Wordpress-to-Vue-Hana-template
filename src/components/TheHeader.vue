@@ -67,7 +67,7 @@ header {
 		--at-apply: "relative cursor-pointer md:order-3 xl:ml-8";
 
 		.badge {
-			--at-apply: "absolute text-center bg-black rounded-full bottom-3 w-15px h-15px -right-2.5 color-white text-10px xl:( text-12px w-20px h-20px -right-3 )";
+			--at-apply: "absolute text-center bg-black rounded-full bottom-3 w-15px h-15px -right-2.5 color-white text-10px pb-4 xl:( text-12px w-20px h-20px -right-3 )";
 		}
 	}
 }

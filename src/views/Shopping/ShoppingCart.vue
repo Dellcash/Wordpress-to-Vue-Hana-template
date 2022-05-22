@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "@vue/reactivity";
 import { useShopStore } from "../../stores/shop";
+import Basket from "../../components/Icons/Basket.vue";
 
 const shopStore = useShopStore();
 const items = computed(() => shopStore.allItems);
@@ -10,7 +11,12 @@ const heads = ref(["کالا", "تعداد", "قیمت", "قیمت کل"]);
 
 <template>
 	<main>
-		<section>
+		<div v-if="shopStore.cart.length === 0" class="basket">
+			<Basket class="mb-1 !w-20 !h-20" />
+			<h1>سبد خرید خالی است!</h1>
+		</div>
+
+		<section v-else>
 			<!-- TOP -->
 			<div class="top">
 				<h4>سبد خرید</h4>
@@ -114,7 +120,7 @@ const heads = ref(["کالا", "تعداد", "قیمت", "قیمت کل"]);
 				<!-- BUTTONS -->
 				<div class="end">
 					<button>پیش فاکتور</button>
-					<button>ثبت سفارش</button>
+					<button><router-link to="/info">ثبت سفارش</router-link></button>
 				</div>
 			</div>
 		</section>
@@ -124,6 +130,14 @@ const heads = ref(["کالا", "تعداد", "قیمت", "قیمت کل"]);
 <style lang="scss" scoped>
 main {
 	--at-apply: "px-3 py-8 sm:( flex items-center justify-center )";
+
+	.basket {
+		--at-apply: "mt-20 mb-40 text-center lg:mb-70";
+
+		h1 {
+			--at-apply: "text-20px font-thin tracking-tighter lg:text-2xl";
+		}
+	}
 
 	section {
 		--at-apply: "sm:w-420px md:w-full lg:w-80% xl:w-88%";
@@ -180,7 +194,7 @@ main {
 						}
 
 						button {
-							--at-apply: "text-red-600 text-8px sm:text-10px lg:text-12px";
+							--at-apply: "text-red-600 text-8px duration-250 hover:( scale-110 ) sm:text-10px lg:text-12px";
 						}
 					}
 				}
@@ -204,17 +218,17 @@ main {
 			}
 
 			.bottom {
-				--at-apply: "flex flex-col lg:( grid grid-cols-12 )";
+				--at-apply: "flex flex-col lg:( grid grid-cols-12 items-center )";
 
 				form {
-					--at-apply: "flex items-center justify-center w-full mt-6 order-2 md:px-10 lg:( order-1 col-span-6 px-0 justify-start )";
+					--at-apply: "flex  justify-center w-full mt-6 order-2 md:px-10 lg:( order-1 col-span-6 px-0 justify-start )";
 
 					input {
-						--at-apply: "placeholder-text-10px border border-gray-300 p-1.5 focus:outline-none lg:( w-60% placeholder-text-14px p-3 text-14px )";
+						--at-apply: "placeholder-text-10px border border-gray-300 p-1.5 focus:outline-none lg:( w-60% placeholder-text-12px p-4 text-12px )";
 					}
 
 					button {
-						--at-apply: "text-10px bg-gray-400 py-2.4 px-5 text-white mr-2 duration-250 hover:bg-gray-300 lg:( text-14px py-3.2 px-10 )";
+						--at-apply: "text-10px bg-gray-400 px-5 text-white mr-2 duration-250 hover:bg-gray-300 lg:( text-14px px-10 )";
 					}
 				}
 

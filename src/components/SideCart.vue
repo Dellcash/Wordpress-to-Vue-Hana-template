@@ -21,7 +21,7 @@ const items = computed(() => shopStore.allItems);
 
 			<div v-if="shopStore.cart.length === 0" class="basket">
 				<Basket mb-1 />
-				<h4>سبد خالی است!</h4>
+				<h4>سبد خرید خالی است!</h4>
 			</div>
 
 			<!-- MAIN -->
