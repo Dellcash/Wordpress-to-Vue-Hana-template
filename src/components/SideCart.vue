@@ -135,7 +135,7 @@ const items = computed(() => shopStore.allItems);
 					}
 
 					span {
-						--at-apply: "text-7px border border-gray-200 rounded-full px-1 text-#000 cursor-pointer sm:( text-10px px-1.5 py-0.5 )";
+						--at-apply: "text-7px border border-gray-200 rounded-full px-0.7 text-#000 cursor-pointer sm:( text-10px px-1.5 py-0.5 )";
 					}
 				}
 
