@@ -46,7 +46,7 @@ const items = computed(() => shopStore.allItems);
 						</div>
 
 						<!-- BOTTOM -->
-						<h6 text="10px sm:12px">
+						<h6 fw100 text="10px sm:12px">
 							{{
 								shopStore.toFarsiNumber(shopStore.numberWithCommas(item.price))
 							}}
