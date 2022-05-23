@@ -55,6 +55,20 @@ const router = createRouter({
       meta: {
         title: 'پایان خرید'
       }
+    },
+    {
+      path: '/blogs',
+      component: () => import('../views/Blog/Posts.vue'),
+      meta: {
+        title: 'وبلاگ'
+      }
+    },
+    {
+      path: '/blog/:id',
+      component: () => import('../views/Blog/Post.vue'),
+      meta: {
+        title: '. . .'
+      }
     }
   ]
 })

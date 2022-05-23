@@ -83,12 +83,5 @@ export const useShopStore = defineStore({
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    // addUser() {
-    //   thisusers.push(this.user);
-    //   localStorage.setItem("users", JSON.stringify(this.users));
-    //   this.user.email = "";
-    //   this.user.password = "";
-    // },
-
   },
 })

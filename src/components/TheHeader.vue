@@ -16,7 +16,7 @@ const navs = ref([
 	},
 	{
 		title: "وبلاگ",
-		link: "#",
+		link: "/blogs",
 	},
 ]);
 
