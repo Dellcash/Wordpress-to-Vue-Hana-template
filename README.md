@@ -13,13 +13,13 @@
   <h3 align="center">HANA wordpress-to-vue</h3>
 
   <p align="center">
-   این قالب فروشگاهی وردپرس 'هانا' بود که بوسیله 
+   این قالب فروشگاهی و وبلاگی وردپرس 'هانا' بود که بوسیله 
     <a href="https://uno.antfu.me/">ٔUnocss</a>
     درحال کدنویسی مجددش هستم به ویوو‌جی‌اس.
     <br />
-    <a href="#">Mine Demo</a>
+    <a href="https://wordpress-to-vue-2.netlify.app/">دمو پروژه من</a>
     ·
-    <a href="https://theme45.mywebzi.ir/">Hana Demo</a>
+    <a href="https://theme45.mywebzi.ir/">قالب هانا</a>
   </p>
   </p>
   
