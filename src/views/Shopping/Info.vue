@@ -89,7 +89,7 @@ const login = () => {
 							v-model="picked"
 							xl="w-5 h-5"
 						/>
-						<label for="one" text="8px md:12px xl:14px" mr-2
+						<label for="one" text="10px md:12px xl:14px" mr-2
 							>خرید بدون عضویت</label
 						>
 					</div>
@@ -102,7 +102,7 @@ const login = () => {
 							v-model="picked"
 							xl="w-5 h-5"
 						/>
-						<label for="two" text="8px md:12px xl:14px" mr-2
+						<label for="two" text="10px md:12px xl:14px" mr-2
 							>عضویت در سایت</label
 						>
 					</div>

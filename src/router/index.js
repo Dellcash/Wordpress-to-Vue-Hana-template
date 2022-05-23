@@ -48,6 +48,13 @@ const router = createRouter({
       meta: {
         title: 'پرداخت'
       }
+    },
+    {
+      path: '/success',
+      component: () => import('../views/Shopping/Success.vue'),
+      meta: {
+        title: 'پایان خرید'
+      }
     }
   ]
 })

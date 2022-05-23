@@ -225,7 +225,7 @@ main {
 				--at-apply: "flex flex-col lg:( grid grid-cols-12 items-center )";
 
 				form {
-					--at-apply: "flex  justify-center w-full mt-6 order-2 md:px-10 lg:( order-1 col-span-6 px-0 justify-start )";
+					--at-apply: "flex justify-center w-full mt-6 order-2 md:px-10 lg:( order-1 col-span-6 px-0 justify-start )";
 
 					input {
 						--at-apply: "placeholder-text-10px border border-gray-300 p-1.5 focus:outline-none lg:( w-60% placeholder-text-12px p-4 text-12px )";
