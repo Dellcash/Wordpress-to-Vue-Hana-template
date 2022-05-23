@@ -1,7 +1,66 @@
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
+import { useShopStore } from "@/stores/shop";
+import { useRouter } from "vue-router";
 
+const shopStore = useShopStore();
+const router = useRouter();
 const picked = ref("One");
+
+const signInForm = reactive({
+	email: "",
+	password: "",
+});
+const signInLoading = ref(false);
+const signIn = () => {
+	const user = shopStore.users.find((user) => user.email === signInForm.email);
+	if (!user) {
+		if (signInForm.email === "" || signInForm.password === "") {
+			alert("fill inputs");
+		} else {
+			signInLoading.value = true;
+			setTimeout(() => {
+				signInLoading.value = false;
+				shopStore.users.push({
+					id: new Date().getTime(),
+					email: signInForm.email,
+					password: signInForm.password,
+				});
+				localStorage.setItem("users", JSON.stringify(shopStore.users));
+				router.push("/checkout");
+			}, 2000);
+		}
+	} else {
+		alert("this email is taken");
+	}
+};
+
+const loginForm = reactive({
+	email: "",
+	password: "",
+});
+const loginLoading = ref(false);
+const login = () => {
+	const user = shopStore.users.find(
+		(user) => user.password == loginForm.password
+	);
+
+	if (user) {
+		loginLoading.value = true;
+		setTimeout(() => {
+			loginLoading.value = false;
+			router.push("/checkout");
+		}, 2000);
+	} else {
+		loginLoading.value = true;
+		setTimeout(() => {
+			loginLoading.value = false;
+			alert("wrong email or password");
+			loginForm.email = "";
+			loginForm.password = "";
+		}, 2000);
+	}
+};
 </script>
 
 <template>
@@ -21,7 +80,7 @@ const picked = ref("One");
 				</p>
 
 				<!--  -->
-				<form @submit.prevent="" m="t4 md:t7">
+				<form @submit.prevent="signIn" m="t4 md:t7">
 					<div class="checkbox" mb-2>
 						<input
 							type="radio"
@@ -49,13 +108,28 @@ const picked = ref("One");
 					</div>
 
 					<div v-if="picked === 'Two'" class="sign-in">
-						<input type="text" placeholder="ایمیل یا موبایل" class="input" />
-						<input type="password" placeholder="کلمه عبور" class="input" />
+						<input
+							v-model="signInForm.email"
+							type="email"
+							placeholder="پست الکترونیکی"
+							class="input"
+						/>
+						<input
+							v-model="signInForm.password"
+							type="password"
+							placeholder="کلمه عبور"
+							class="input"
+						/>
 
-						<button class="btn">ادامه</button>
+						<button class="text-center btn">
+							<span v-if="!signInLoading">ادامه</span>
+							<span v-else>. . .</span>
+						</button>
 					</div>
 
-					<button v-else class="!mt-8 btn">ادامه</button>
+					<button v-else class="!mt-5 btn">
+						<router-link to="/checkout">ادامه</router-link>
+					</button>
 				</form>
 			</div>
 
@@ -64,16 +138,29 @@ const picked = ref("One");
 				<div m="b04 md:b-8">
 					<h6 m="b-2 md:mb-5" text="md:14px xl:16px">قبلا خرید کرده‌اید؟</h6>
 					<p text="9px md:12px xl:14px">
-						برای ادامه، لطفا شماره موبایل یا آدرس ایمیل و رمز عبور حساب خود را
-						وارد کنید.
+						برای ادامه، لطفا آدرس پست الکترونیکی و رمز عبور حساب خود را وارد
+						کنید.
 					</p>
 				</div>
 
-				<form flex flex-col>
-					<input type="text" placeholder="ایمیل یا موبایل" class="input" />
-					<input type="password" placeholder="کلمه عبور" class="input" />
+				<form @submit.prevent="login" flex flex-col>
+					<input
+						v-model="loginForm.email"
+						type="email"
+						placeholder="پست الکترونیکی"
+						class="input"
+					/>
+					<input
+						v-model="loginForm.password"
+						type="password"
+						placeholder="کلمه عبور"
+						class="input"
+					/>
 
-					<button class="btn">ادامه</button>
+					<button class="btn">
+						<span v-if="!loginLoading">ادامه</span>
+						<span v-else>. . .</span>
+					</button>
 				</form>
 			</div>
 		</section>
@@ -116,7 +203,7 @@ main {
 		}
 
 		.input {
-			--at-apply: "placeholder-text-10px border-gray-300 border-1 outline-none w-35 pr-2 mb-6px py-1 sm:w-50 md:( w-90 py-2 placeholder-text-12px mb-3 py-3 ) xl:w-120";
+			--at-apply: "placeholder-text-10px border-gray-300 border-1 outline-none w-35 pr-2 mb-6px py-1 sm:w-50 md:( w-90 py-2 placeholder-text-12px mb-3 py-3 ) xl:( w-120 text-16px )";
 		}
 
 		.btn {

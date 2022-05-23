@@ -120,7 +120,11 @@ const heads = ref(["کالا", "تعداد", "قیمت", "قیمت کل"]);
 				<!-- BUTTONS -->
 				<div class="end">
 					<button>پیش فاکتور</button>
-					<button><router-link to="/info">ثبت سفارش</router-link></button>
+					<button>
+						<router-link :to="shopStore.isLoggedIn ? '/checkout' : '/info'"
+							>ثبت سفارش</router-link
+						>
+					</button>
 				</div>
 			</div>
 		</section>

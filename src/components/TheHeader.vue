@@ -56,7 +56,7 @@ header {
 	--at-apply: "flex items-center justify-between py-5 px-3 sm:px-7rem lg:px-15rem xl:(px-5rem py-10)";
 
 	h3 {
-		--at-apply: "text-16px tracking-tighter sm:text-24px md:order-2 xl:ml-14rem";
+		--at-apply: "text-16px tracking-tighter sm:text-28px md:order-2 xl:ml-14rem";
 	}
 
 	li {

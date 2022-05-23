@@ -72,11 +72,15 @@ const items = computed(() => shopStore.allItems);
 				</div>
 
 				<!-- BUTTONS -->
-				<div border-t border-gray-300>
+				<div border="t gray-300">
 					<button>
 						<router-link to="/shopping-card">مشاهده سبد خرید</router-link>
 					</button>
-					<button>تسویه حساب</button>
+					<button>
+						<router-link :to="shopStore.isLoggedIn ? '/checkout' : '/info'"
+							>تسویه حساب</router-link
+						>
+					</button>
 				</div>
 			</div>
 		</div>

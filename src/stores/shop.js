@@ -10,7 +10,8 @@ export const useShopStore = defineStore({
   state: () => ({
     items: useShop.items,
     cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
-    sideCart: false
+    sideCart: false,
+    users: localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [],
   }),
   getters: {
     getItem: (state) => {
@@ -28,6 +29,14 @@ export const useShopStore = defineStore({
       return state.cart.reduce((total, p) => {
         return total + p.price * p.quantity
       }, 0)
+    },
+    // IF USER ALREADY EXIST LOGGED IN SKIP INFO PAGE AND GO TO CHECKOUT PAGE
+    isLoggedIn(state) {
+      if (state.users.length > 0) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   actions: {
@@ -73,6 +82,13 @@ export const useShopStore = defineStore({
     },
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    },
+    // addUser() {
+    //   thisusers.push(this.user);
+    //   localStorage.setItem("users", JSON.stringify(this.users));
+    //   this.user.email = "";
+    //   this.user.password = "";
+    // },
+
   },
 })

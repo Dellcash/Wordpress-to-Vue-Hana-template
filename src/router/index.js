@@ -41,6 +41,13 @@ const router = createRouter({
       meta: {
         title: 'اطلاعات شما'
       }
+    },
+    {
+      path: '/checkout',
+      component: () => import('../views/Shopping/Checkout.vue'),
+      meta: {
+        title: 'پرداخت'
+      }
     }
   ]
 })
