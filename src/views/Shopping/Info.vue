@@ -10,13 +10,17 @@ const picked = ref("One");
 const signInForm = reactive({
 	email: "",
 	password: "",
+	signInError: "",
 });
 const signInLoading = ref(false);
 const signIn = () => {
 	const user = shopStore.users.find((user) => user.email === signInForm.email);
 	if (!user) {
 		if (signInForm.email === "" || signInForm.password === "") {
-			alert("fill inputs");
+			signInForm.signInError = "لطفا اطلاعات را کامل وارد کنید";
+			setTimeout(() => {
+				signInForm.signInError = "";
+			}, 2000);
 		} else {
 			signInLoading.value = true;
 			setTimeout(() => {
@@ -30,14 +34,13 @@ const signIn = () => {
 				router.push("/checkout");
 			}, 2000);
 		}
-	} else {
-		alert("this email is taken");
 	}
 };
 
 const loginForm = reactive({
 	email: "",
 	password: "",
+	loginError: "",
 });
 const loginLoading = ref(false);
 const login = () => {
@@ -55,7 +58,10 @@ const login = () => {
 		loginLoading.value = true;
 		setTimeout(() => {
 			loginLoading.value = false;
-			alert("wrong email or password");
+			loginForm.loginError = "کاربری با این مشخصات وجود ندارد";
+			setTimeout(() => {
+				loginForm.loginError = "";
+			}, 2000);
 			loginForm.email = "";
 			loginForm.password = "";
 		}, 2000);
@@ -168,6 +174,21 @@ const login = () => {
 		<div class="mb-10 head">
 			<h6>قدم دوم: روش پرداخت</h6>
 		</div>
+
+		<!-- ERROR -->
+		<div v-if="signInForm.signInError" class="sucess">
+			<button @click="signInForm.signInError = ''" mb-2>
+				<span text-10px text-gray-100>&#9747;</span>
+			</button>
+			<p>{{ signInForm.signInError }}</p>
+		</div>
+
+		<div v-if="loginForm.loginError" class="sucess">
+			<button @click="loginForm.loginError = ''" mb-2>
+				<span text-10px text-gray-100>&#9747;</span>
+			</button>
+			<p>{{ loginForm.loginError }}</p>
+		</div>
 	</main>
 </template>
 
@@ -207,7 +228,15 @@ main {
 		}
 
 		.btn {
-			--at-apply: "text-10px py-1.5  bg-#62af65 text-white duration-250 w-35 hover:bg-#62ce65 sm:w-50 md:(w-90 text-14px) lg:w-40 xl:( text-16px py-2.5 )";
+			--at-apply: "text-10px py-1.5  bg-#62af65 text-white duration-250 w-35 focus:outline-none hover:bg-#62ce65 sm:w-50 md:(w-90 text-14px) lg:w-40 xl:( text-16px py-2.5 )";
+		}
+	}
+
+	.sucess {
+		--at-apply: "fixed flex items-center top-10 right-5 bg-red p-2";
+
+		p {
+			--at-apply: "text-10px ml-3 mr-1 text-white tracking-wide";
 		}
 	}
 }
